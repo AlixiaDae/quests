@@ -5,7 +5,9 @@ const Quest = (name,description,priority) => {
 
     //remove .name later
 
-    const getObjectives = () => objectives.map(objective => objective.name)
+    const getObjectives = () => objectives//.map(objective => objective.name)
+    
+    const getObjective = (chosenObjective) => objectives.find(objective => objective.name == chosenObjective.name)
 
     const addObjective = (newObjective) => {
         if(objectives.find(objective => objective.name == newObjective.name)) return
@@ -25,6 +27,7 @@ const Quest = (name,description,priority) => {
     return {
         getQuestName,
         getObjectives,
+        getObjective,
         addObjective,
         removeObjective,
         completeObjective

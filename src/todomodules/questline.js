@@ -1,11 +1,11 @@
-const QuestLine = (name,description) => {
+const QuestLine = () => {
     let quests = []
-
-    const getQuestLineName = () => name
 
     //remove .name later
 
-    const getQuests = () => quests.map(quest => quest.getQuestName())
+    const getQuests = () => quests//.map(quest => quest.getQuestName())
+
+    const getQuest = (chosenQuest) => quests.find(quest => quest.getQuestName() == chosenQuest.getQuestName())
 
     const addQuest = (newQuest) => {
         if(quests.find(quest => quest.getQuestName() == newQuest.getQuestName())) return 
@@ -18,9 +18,8 @@ const QuestLine = (name,description) => {
     }
 
     return {
-        description,
-        getQuestLineName,
         getQuests,
+        getQuest,
         addQuest,
         removeQuest
     }
