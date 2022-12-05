@@ -1,6 +1,4 @@
-import objective from "./objective"
-
- const quest = (name,description,priority) => {
+const quest = (name,description,priority) => {
     let objectives = []
 
     const getObjectives = () => objectives

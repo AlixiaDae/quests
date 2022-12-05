@@ -1,5 +1,3 @@
-import quest from "./quest"
-
 const adventureline = () => {
     let quests = []
 

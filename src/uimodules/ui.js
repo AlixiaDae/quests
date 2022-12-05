@@ -1,29 +1,40 @@
-import objective from "../todomodules/objective"
-import Quest from "../todomodules/quest"
-import QuestLine from "../todomodules/adventureline"
-import uiobjective from "./uiobjective"
 import '../style.css'
+import nasaImage from '../images/nasa.jpg'
 
-const questJournal = (() => {
-    const content = document.createElement('div')
-    document.body.appendChild(content)
+const UI = (() => {
+    document.body.style.backgroundImage = `url(${nasaImage})`
+    const main = document.createElement('div')
+    main.id = 'main'
+    document.body.appendChild(main)
 
-    const questLine = QuestLine()
-    
-    const firstQuest = Quest('First Quest', 'starting quest', 'today')
-    const newObjective = objective('First objective', 'First objective of first quest', 'Incomplete')
-    const otherObjective = objective('Second objective', 'Second objective of first quest', 'Incomplete')
+    const header = document.createElement('h1')
+    header.classList.add('header')
+    header.textContent = 'You drift in space, your ship in pieces and with little materials left to repair it.'
+    main.appendChild(header)
 
+    const adventureBox = document.createElement('div')
+    adventureBox.classList.add('adventure-box')
+    main.appendChild(adventureBox)
 
-    questLine.addQuest(firstQuest)
+    const adventureBoxHeader = document.createElement('h2')
+    adventureBoxHeader.textContent = 'Adventure Line'
+    adventureBox.appendChild(adventureBoxHeader)
 
-    firstQuest.addObjective(newObjective)
-    firstQuest.addObjective(otherObjective)
+    const questsWrapper = document.createElement('div')
+    questsWrapper.classList.add('quests-wrapper')
+    adventureBox.appendChild(questsWrapper)
 
-    console.log(firstQuest.getObjectives())
-    //use a for loop to make the ui objectives and append them to content
+    const questsBox = document.createElement('div')
+    questsBox.textContent = 'Quests'
+    questsBox.classList.add('quests-header')
+    questsWrapper.appendChild(questsBox)
 
-    // content.appendChild(uiobjective(questLine.getQuest(firstQuest).getObjective(newObjective)))
+    const objectivesHeader = document.createElement('div')
+    objectivesHeader.classList.add('objectives-header')
+    objectivesHeader.textContent = 'Objectives'
+    questsWrapper.appendChild(objectivesHeader)
+
+    return main
 })()
 
-export default questJournal
+export default UI

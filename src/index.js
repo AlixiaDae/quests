@@ -1,20 +1,7 @@
 import adventureline from "./todomodules/adventureline";
 import objective from "./todomodules/objective";
 import quest from "./todomodules/quest";
-
-// const questLine = QuestLine()
-// const newObjective = objective('First objective', 'First objective of first quest', 'Incomplete')
-
-// const firstQuest = Quest('First Quest', 'starting quest', 'today')
-
-// questLine.addQuest(firstQuest)
-// firstQuest.addObjective(newObjective)
-
-// console.log(questLine.getQuests().map(quest => quest.getQuestName()))
-// console.log(firstQuest.getObjectives().map(objective => objective.name))
-
-// document.body.appendChild(uiobjective(questLine.getQuest(firstQuest).getObjective(newObjective)))
-
+import UI from "./uimodules/ui";
 
 const adventure = adventureline()
 
@@ -26,7 +13,8 @@ const thirdObjective = objective('Third Objective', 'Third objective of starting
 firstQuest.addObjective(firstObjective)
 firstQuest.addObjective(secondObjective)
 firstQuest.addObjective(thirdObjective)
-firstQuest.removeObjective(secondObjective)
+firstQuest.removeObjective(firstObjective)
+
 
 const secondQuest = quest('Second Quest', 'Second Quest in line', 'today')
 const firstObj = objective('First Objective', 'First Objective in Second Quest', 'Incomplete')
@@ -34,12 +22,13 @@ const firstObj = objective('First Objective', 'First Objective in Second Quest',
 secondQuest.addObjective(firstObj)
 
 const thirdQuest = quest('Third Quest', 'Third quest in line', 'today')
+const first = objective('First objective', 'First objective in third quest','Incomplete')
 
 adventure.addQuest(firstQuest)
 adventure.addQuest(secondQuest)
 adventure.addQuest(thirdQuest)
-adventure.removeQuest(secondQuest)
 
 
-console.log(adventure.getQuests())
+console.log(adventure.getQuests().map(quest => quest.getObjectives()))
 
+UI
