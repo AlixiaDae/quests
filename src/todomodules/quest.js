@@ -1,37 +1,28 @@
-const Quest = (name,description,priority) => {
+import objective from "./objective"
+
+ const quest = (name,description,priority) => {
     let objectives = []
 
-    const getQuestName = () => name
-
-    //remove .name later
-
-    const getObjectives = () => objectives//.map(objective => objective.name)
-    
-    const getObjective = (chosenObjective) => objectives.find(objective => objective.name == chosenObjective.name)
+    const getObjectives = () => objectives
+    const getObjective = (newObjective) => objectives.find(objective => objective.name == newObjective.name)
 
     const addObjective = (newObjective) => {
         if(objectives.find(objective => objective.name == newObjective.name)) return
         objectives.push(newObjective)
     }
 
-    const removeObjective = (chosenObjective) => {
-        const objectiveToDelete = objectives.find(objective => objective.name == chosenObjective.name)
+    const removeObjective = (newObjective) => {
+        const objectiveToDelete = objectives.find(objective => objective.name == newObjective.name)
         objectives.splice(objectives.indexOf(objectiveToDelete),1)
     }
 
-    const completeObjective = (chosenObjective) => {
-        const objectiveToComplete = objectives.find(objective => objective.name == chosenObjective.name)
-        return objectiveToComplete.status = 'Complete'
-    }
-
     return {
-        getQuestName,
+        name,
         getObjectives,
         getObjective,
         addObjective,
-        removeObjective,
-        completeObjective
+        removeObjective
     }
-}
+ }
 
-export default Quest
+ export default quest

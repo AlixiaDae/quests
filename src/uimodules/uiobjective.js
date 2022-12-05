@@ -1,13 +1,14 @@
 const uiobjective = (chosenObjective) => {
     const objective = document.createElement('div')
     objective.classList.add('objective')
+    objective.id = chosenObjective.name
 
     const objectiveBtn = document.createElement('button')
     objectiveBtn.classList.add('remove-objective')
     objectiveBtn.id = chosenObjective.name
     objectiveBtn.textContent = 'X'
     objectiveBtn.addEventListener('click', (e) => {
-        console.log(e.target.id)
+        objective.remove()
     })
     objective.appendChild(objectiveBtn)
 
@@ -30,6 +31,10 @@ const uiobjective = (chosenObjective) => {
     objectiveStatus.addEventListener('change', () => {
         if(objectiveStatus.checked) {
             chosenObjective.status = 'Completed'
+            console.log(chosenObjective.status)
+        } else {
+            chosenObjective.status = 'Incomplete'
+            console.log(chosenObjective.status)
         }
     })
     objectiveStatusLabel.appendChild(objectiveStatus)
