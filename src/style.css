@@ -48,9 +48,10 @@ body {
     grid-area: 1;
     margin: 0;
     font-size: 30px;
+    letter-spacing: 2px;
 }
 
-.quest-wrapper > :not(:first-child) {
+.content-box {
     grid-area: 2;
     display: grid;
     grid-template-columns: 400px 1fr;
@@ -59,17 +60,8 @@ body {
     padding: 10px;
 }
 
-.quest-box {
-    grid-area: 1;
-    display: grid;
-    grid-template-rows: repeat(4,60px);
-    text-align: center;
-    align-items: center;
-    grid-auto-flow: row;
-    border: 2px solid #95abad;
-}
-
-.quest-box > :first-child {
+.quest-box > :first-child,
+.objective-box > :first-child {
     font-size: 25px;
     text-decoration: underline;
 }
@@ -84,4 +76,92 @@ body {
 
 .quest-box > button:hover{
     background-color: #304a53;
+}
+
+.quest-box,
+.objective-box {
+    grid-area: 1;
+    display: grid;
+    text-align: center;
+    align-items: center;
+    grid-auto-flow: row;
+    border: 2px solid #95abad;
+}
+
+.quest-box {
+    grid-template-rows: repeat(4,60px);
+}
+
+.objective-box {
+    grid-template-rows: repeat(4,80px);
+    justify-content: center;
+}
+
+form {
+    grid-area: 4;
+    display: none;
+}
+
+form > * {
+    letter-spacing: 1px;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+legend {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+label {
+    margin-top: 5px;
+}
+
+input, 
+textarea {
+    width: 400px;
+}
+
+input,
+textarea,
+select {
+    padding: 5px;
+    letter-spacing: 1px;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid #95abad;
+}
+
+option {
+    background-color: #304a53;
+}
+
+textarea {
+    resize: none;
+}
+
+#submit {
+    background-color: #367549;
+    padding: 5px;
+    margin-top: 10px;
+    font-size: 15px;
+    border: 2px #95abad solid;
+    width: 300px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+}
+
+#submit:hover {
+    background-color: #2f643f;
+    font-weight: bold;
 }
