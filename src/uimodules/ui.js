@@ -1,40 +1,37 @@
 import '../style.css'
-import nasaImage from '../images/nasa.jpg'
 
 const UI = (() => {
-    document.body.style.backgroundImage = `url(${nasaImage})`
-    const main = document.createElement('div')
-    main.id = 'main'
-    document.body.appendChild(main)
+    //Quest Terminal
 
-    const header = document.createElement('h1')
-    header.classList.add('header')
-    header.textContent = 'You drift in space, your ship in pieces and with little materials left to repair it.'
-    main.appendChild(header)
+    const questTerminalWrapper = document.createElement('div')
+    questTerminalWrapper.classList.add('quest-wrapper')
+    document.body.appendChild(questTerminalWrapper)
 
-    const adventureBox = document.createElement('div')
-    adventureBox.classList.add('adventure-box')
-    main.appendChild(adventureBox)
+    const questTerminalHeader = document.createElement('h2')
+    questTerminalHeader.textContent = 'Quest Terminal'
+    questTerminalWrapper.appendChild(questTerminalHeader)
 
-    const adventureBoxHeader = document.createElement('h2')
-    adventureBoxHeader.textContent = 'Adventure Line'
-    adventureBox.appendChild(adventureBoxHeader)
+    const questTerminalBox = document.createElement('div')
+    questTerminalWrapper.appendChild(questTerminalBox)
 
-    const questsWrapper = document.createElement('div')
-    questsWrapper.classList.add('quests-wrapper')
-    adventureBox.appendChild(questsWrapper)
+    //Quest Box
 
-    const questsBox = document.createElement('div')
-    questsBox.textContent = 'Quests'
-    questsBox.classList.add('quests-header')
-    questsWrapper.appendChild(questsBox)
+    const questBox = document.createElement('div')
+    questBox.classList.add('quest-box')
+    questTerminalBox.appendChild(questBox)
 
-    const objectivesHeader = document.createElement('div')
-    objectivesHeader.classList.add('objectives-header')
-    objectivesHeader.textContent = 'Objectives'
-    questsWrapper.appendChild(objectivesHeader)
+    const questBoxHeader = document.createElement('p')
+    questBoxHeader.textContent = 'Quests'
+    questBox.appendChild(questBoxHeader)
 
-    return main
+    const addQuestBtn = document.createElement('button')
+    addQuestBtn.textContent = '+ Add Quest'
+    addQuestBtn.addEventListener('click', () => {
+        
+    })
+    questBox.appendChild(addQuestBtn)
+    
+    return questTerminalWrapper
 })()
 
 export default UI
