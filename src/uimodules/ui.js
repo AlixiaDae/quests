@@ -1,7 +1,8 @@
 import '../style.css'
 import queststerminal from '../todomodules/queststerminal'
 import quest from '../todomodules/quest'
-import questModule from './uiquests'
+import uiQuest from './uiquest'
+import uiObjective from './uiobjective'
 
 const UI = (() => {
     //Quest Terminal
@@ -119,7 +120,7 @@ const UI = (() => {
         if(questLine.containsQuest(newQuest)) {
             return
         } else {
-            questBox.appendChild(questModule(newQuest))
+            questBox.appendChild(uiQuest(newQuest))
             questLine.addQuest(newQuest)
         }
     })
@@ -135,7 +136,10 @@ const UI = (() => {
     objectiveBoxHeader.textContent = "Objectives"
     objectiveBox.appendChild(objectiveBoxHeader)
 
+
+
     objectiveBox.appendChild(questForm)
+    objectiveBox.appendChild(uiObjective())
 
     return questTerminalWrapper
 })()

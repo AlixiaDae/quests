@@ -1,4 +1,4 @@
-const questModule = (newQuest) => {
+const uiQuest = (newQuest) => {
     const quest = document.createElement('button')
     quest.textContent = newQuest.name
 
@@ -9,4 +9,4 @@ const questModule = (newQuest) => {
     return quest
 }
 
-export default questModule
+export default uiQuest
