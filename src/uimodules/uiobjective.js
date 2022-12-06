@@ -8,6 +8,7 @@ const uiObjective = () => {
 
     const objectivesWrapper = document.createElement('div')
     objectivesWrapper.classList.add('objectives-wrapper')
+    objectivesWrapper.style.display = 'none'
     objectiveBox.appendChild(objectivesWrapper)
 
     const addObjectiveBtn = document.createElement('button')

@@ -120,55 +120,6 @@ const UI = (() => {
     })
     questField.appendChild(formSubmitBtn)
     
-     //Objective Box
-
-    // const objectiveBox = document.createElement('div')
-    // objectiveBox.classList.add('objective-box')
-    // questTerminalBox.appendChild(objectiveBox)
- 
-    // const objectiveBoxHeader = document.createElement('p')
-    // objectiveBoxHeader.textContent = "Objectives"
-    // objectiveBox.appendChild(objectiveBoxHeader)
-
-    // const objectivesWrapper = document.createElement('div')
-    // objectivesWrapper.classList.add('objectives-wrapper')
-    // objectiveBox.appendChild(objectivesWrapper)
-
-    // const addObjectiveBtn = document.createElement('button')
-    // addObjectiveBtn.textContent = '+ Add objective'
-    // objectivesWrapper.appendChild(addObjectiveBtn)
-
-    // const objectiveForm = document.createElement('form')
-    // // objectiveForm.style.display = 'none'
-
-    // const objectiveField = document.createElement('fieldset')
-    // objectiveForm.appendChild(objectiveField)
-
-    // const objectiveLegend = document.createElement('legend')
-    // objectiveLegend.textContent = 'New Objective'
-    // objectiveField.appendChild(objectiveLegend)
-
-    // const objectiveNameLabel = document.createElement('label')
-    // objectiveNameLabel.textContent = 'Objective title: '
-    // objectiveNameLabel.setAttribute('for','name')
-    // objectiveField.appendChild(objectiveNameLabel)
-
-    // const objectiveName = document.createElement('input')
-    // objectiveName.name = 'name'
-    // objectiveField.appendChild(objectiveName)
-
-    // const objectiveDescriptionLabel = document.createElement('label')
-    // objectiveDescriptionLabel.textContent = 'Objective: '
-    // objectiveDescriptionLabel.setAttribute('for','description')
-    // objectiveField.appendChild(objectiveDescriptionLabel)
-
-    // const objectiveDescription = document.createElement('input')
-    // objectiveDescription.setAttribute('for', 'description')
-    // objectiveField.appendChild(objectiveDescription)
-
-    // const objectiveBtn = document.createElement('button')
-    // objectiveBtn.textContent = 'Add objective'
-
     const logTerminal = document.createElement('div')
     logTerminal.classList.add('log-terminal')
     questTerminalBox.appendChild(logTerminal)
@@ -194,8 +145,7 @@ const UI = (() => {
         } else {
             objectiveForm.style.display = 'none'
         }
-    })
-    
+    })   
 
     logTerminal.appendChild(questForm)
 
