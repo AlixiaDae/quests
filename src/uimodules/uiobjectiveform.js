@@ -1,21 +1,4 @@
-const uiObjective = () => {
-    const objectiveBox = document.createElement('div')
-    objectiveBox.classList.add('objective-box')
- 
-    const objectiveBoxHeader = document.createElement('p')
-    objectiveBoxHeader.textContent = "Objectives"
-    objectiveBox.appendChild(objectiveBoxHeader)
-
-    const objectivesWrapper = document.createElement('div')
-    objectivesWrapper.classList.add('objectives-wrapper')
-    objectivesWrapper.style.display = 'none'
-    objectiveBox.appendChild(objectivesWrapper)
-
-    const addObjectiveBtn = document.createElement('button')
-    addObjectiveBtn.id= 'add-objective-button'
-    addObjectiveBtn.textContent = '+ Add objective'
-    objectivesWrapper.appendChild(addObjectiveBtn)
-
+const uiObjectiveForm = () => {
     const logTerminal = document.querySelector('.log-terminal')
 
     const objectiveForm = document.createElement('form')
@@ -53,9 +36,7 @@ const uiObjective = () => {
     objectiveBtn.textContent = 'Add new objective'
     objectiveField.appendChild(objectiveBtn)
 
-    const questForm = document.querySelector('.quest-form')
-
-    return objectiveBox
+    return objectiveForm
 }
 
-export default uiObjective
+export default uiObjectiveForm

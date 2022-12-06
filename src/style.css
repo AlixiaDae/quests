@@ -24,7 +24,7 @@ body {
 
 .quest-wrapper > :first-child {
     grid-area: 1;
-    margin: 0;
+    margin-bottom: 40px;
     font-size: 30px;
     letter-spacing: 2px;
 }
