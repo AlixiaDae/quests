@@ -62,27 +62,10 @@ const uiQuestForm = () => {
     dedfconFiveOption.value = 'defconfive'
     questUrgencySelect.appendChild(dedfconFiveOption)
 
-    const formSubmitBtn = document.createElement('button')
-    formSubmitBtn.id = 'submit-quest'
-    formSubmitBtn.textContent = 'Submit Quest'
-    formSubmitBtn.addEventListener('click', (e) => {
-        e.preventDefault()
-        const name = questName.value
-        const description = questDescription.value
-        const priority = questUrgencySelect.value
-        if(name == '' || description == '') {
-            alert('Please do not leave name or description blank!')
-            return
-        }
-        const newQuest = quest(name,description,priority)
-        if(questLine.containsQuest(newQuest)) {
-            return
-        } else {
-            questBox.appendChild(uiQuest(newQuest))
-            questLine.addQuest(newQuest)
-        }
-    })
-    questField.appendChild(formSubmitBtn)
+    const questFormSubmitBtn = document.createElement('button')
+    questFormSubmitBtn.id = 'submit-quest'
+    questFormSubmitBtn.textContent = 'Submit Quest'
+    questField.appendChild(questFormSubmitBtn)
 
     return questForm
 }

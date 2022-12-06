@@ -1,9 +1,6 @@
 import '../style.css'
 import queststerminal from '../todomodules/queststerminal'
 import quest from '../todomodules/quest'
-import uiObjective from './uiobjectiveform'
-import uiObjectiveForm from './uiobjectiveform'
-import uiQuestButton from './uiquestbutton'
 import uiQuestForm from './uiquestform'
 
 const UI = (() => {
@@ -52,11 +49,6 @@ const UI = (() => {
     objectivesWrapper.classList.add('objectives-wrapper')
     objectiveBox.appendChild(objectivesWrapper)
 
-    const addObjectiveBtn = document.createElement('button')
-    addObjectiveBtn.id= 'add-objective-button'
-    addObjectiveBtn.textContent = '+ Add objective'
-    objectivesWrapper.appendChild(addObjectiveBtn)
-
     //Log Terminal
     
     const logTerminal = document.createElement('div')
@@ -64,40 +56,23 @@ const UI = (() => {
     questTerminalBox.appendChild(logTerminal)
 
     logTerminal.appendChild(uiQuestForm())
-    logTerminal.appendChild(uiObjectiveForm())
-
-    const questForm = document.querySelector('.quest-form')
-    const objectiveForm = document.querySelector('.objective-form')
-
-    questBox.appendChild(uiQuestButton(startingQuest))
-
-    const questButtons = document.querySelectorAll('.quest-navigation')
 
     //for each objective of a quest, append it to the objective box
 
-    questButtons.forEach(button => 
-        button.addEventListener('click', () => {
-            objectiveForm.style.display = 'none'
-            questForm.style.display = 'none'
-        }))
+    const questForm = document.querySelector('.quest-form')
+    const questFormSubmitBtn = document.getElementById('submit-quest')
+
+    questFormSubmitBtn.addEventListener('click', (e) => {
+        e.preventDefault()
+    })
 
     addQuestBtn.addEventListener('click', () => {
         if(questForm.style.display == 'none') {
             questForm.style.display = 'block'
-            objectiveForm.style.display = 'none'
         } else {
             questForm.style.display = 'none'
         }
     })
-
-    addObjectiveBtn.addEventListener('click', (e) => {
-        if(objectiveForm.style.display == 'none') {
-            objectiveForm.style.display = 'block'
-            questForm.style.display = 'none'
-        } else {
-            objectiveForm.style.display = 'none'
-        }
-    })   
 
     return questTerminalWrapper
 })()
