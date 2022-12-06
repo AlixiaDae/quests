@@ -1,6 +1,7 @@
 import '../style.css'
 import queststerminal from '../todomodules/queststerminal'
 import quest from '../todomodules/quest'
+import questModule from './uiquests'
 
 const UI = (() => {
     //Quest Terminal
@@ -102,6 +103,7 @@ const UI = (() => {
     dedfconFiveOption.value = 'defconfive'
     questUrgencySelect.appendChild(dedfconFiveOption)
 
+
     const formSubmitBtn = document.createElement('button')
     formSubmitBtn.id = 'submit'
     formSubmitBtn.textContent = 'Submit Quest'
@@ -114,8 +116,12 @@ const UI = (() => {
             alert('Please do not leave name or description blank!')
         }
         const newQuest = quest(name,description,priority)
-        questLine.addQuest(newQuest)
-        console.log(questLine.getQuests())
+        if(questLine.containsQuest(newQuest)) {
+            return
+        } else {
+            questBox.appendChild(questModule(newQuest))
+            questLine.addQuest(newQuest)
+        }
     })
     field.appendChild(formSubmitBtn)
 
