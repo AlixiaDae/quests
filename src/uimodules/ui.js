@@ -1,7 +1,11 @@
 import '../style.css'
+import queststerminal from '../todomodules/queststerminal'
+import quest from '../todomodules/quest'
 
 const UI = (() => {
     //Quest Terminal
+
+    const questLine = queststerminal()
 
     const questTerminalWrapper = document.createElement('div')
     questTerminalWrapper.classList.add('quest-wrapper')
@@ -28,7 +32,7 @@ const UI = (() => {
     const addQuestBtn = document.createElement('button')
     addQuestBtn.textContent = '+ Add Quest'
     addQuestBtn.addEventListener('click', () => {
-        if(questForm.style.display === 'none') {
+        if(questForm.style.display == 'none') {
             questForm.style.display = 'block'
         } else {
             questForm.style.display = 'none'
@@ -37,6 +41,7 @@ const UI = (() => {
     questBox.appendChild(addQuestBtn)
 
     const questForm = document.createElement('form')
+    questForm.style.display = 'none'
     
     const field = document.createElement('fieldset')
     questForm.appendChild(field)
@@ -62,8 +67,6 @@ const UI = (() => {
     const questDescription = document.createElement('textarea')
     questDescription.name = 'description'
     field.appendChild(questDescription)
-
-    //Select
 
     const questUrgencyLabel = document.createElement('label')
     questUrgencyLabel.textContent = 'Urgency: '
@@ -102,6 +105,18 @@ const UI = (() => {
     const formSubmitBtn = document.createElement('button')
     formSubmitBtn.id = 'submit'
     formSubmitBtn.textContent = 'Submit Quest'
+    formSubmitBtn.addEventListener('click', (e) => {
+        e.preventDefault()
+        const name = questName.value
+        const description = questDescription.value
+        const priority = questUrgencySelect.value
+        if(name == '' || description == '') {
+            alert('Please do not leave name or description blank!')
+        }
+        const newQuest = quest(name,description,priority)
+        questLine.addQuest(newQuest)
+        console.log(questLine.getQuests())
+    })
     field.appendChild(formSubmitBtn)
 
     //Objective Box

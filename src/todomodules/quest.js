@@ -21,6 +21,6 @@ const quest = (name,description,priority) => {
         addObjective,
         removeObjective
     }
- }
+}
 
- export default quest
+export default quest

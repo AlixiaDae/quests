@@ -1,4 +1,4 @@
-const adventureline = () => {
+const queststerminal = () => {
     let quests = []
 
     const getQuests = () => quests
@@ -23,4 +23,4 @@ const adventureline = () => {
     }
 }
 
-export default adventureline
+export default queststerminal

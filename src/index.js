@@ -1,9 +1,9 @@
-import adventureline from "./todomodules/adventureline";
 import objective from "./todomodules/objective";
 import quest from "./todomodules/quest";
+import queststerminal from "./todomodules/queststerminal";
 import UI from "./uimodules/ui";
 
-const adventure = adventureline()
+const adventure = queststerminal()
 
 const firstQuest = quest('Starting Quest', 'First Quest in line', 'today')
 const firstObjective = objective('Starting Objective', 'First Objective in Starting Quest', 'Incomplete')
