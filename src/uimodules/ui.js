@@ -33,51 +33,45 @@ const UI = (() => {
 
     const addQuestBtn = document.createElement('button')
     addQuestBtn.textContent = '+ Add Quest'
-    addQuestBtn.addEventListener('click', () => {
-        if(questForm.style.display == 'none') {
-            questForm.style.display = 'block'
-        } else {
-            questForm.style.display = 'none'
-        }
-    })
     questBox.appendChild(addQuestBtn)
 
     const questForm = document.createElement('form')
+    questForm.classList.add('quest-form')
     questForm.style.display = 'none'
     
-    const field = document.createElement('fieldset')
-    questForm.appendChild(field)
+    const questField = document.createElement('fieldset')
+    questForm.appendChild(questField)
 
     const fieldLegend = document.createElement('legend')
     fieldLegend.textContent = 'New Quest'
-    field.appendChild(fieldLegend)
+    questField.appendChild(fieldLegend)
 
     const questNameLabel = document.createElement('label')
     questNameLabel.textContent = 'Quest Name: '
     questNameLabel.setAttribute('for', 'name')
-    field.appendChild(questNameLabel)
+    questField.appendChild(questNameLabel)
 
     const questName = document.createElement('input')
     questName.name = 'name'
-    field.appendChild(questName)
+    questField.appendChild(questName)
 
     const questDescriptionLabel = document.createElement('label')
     questDescriptionLabel.textContent = 'Quest Description: '
     questDescriptionLabel.setAttribute('for', 'description')
-    field.appendChild(questDescriptionLabel)
+    questField.appendChild(questDescriptionLabel)
 
     const questDescription = document.createElement('textarea')
     questDescription.name = 'description'
-    field.appendChild(questDescription)
+    questField.appendChild(questDescription)
 
     const questUrgencyLabel = document.createElement('label')
     questUrgencyLabel.textContent = 'Urgency: '
     questUrgencyLabel.setAttribute('for', 'urgency')
-    field.appendChild(questUrgencyLabel)
+    questField.appendChild(questUrgencyLabel)
 
     const questUrgencySelect = document.createElement('select')
     questUrgencySelect.name = 'urgency'
-    field.appendChild(questUrgencySelect)
+    questField.appendChild(questUrgencySelect)
     
     const defconOneOption = document.createElement('option')
     defconOneOption.textContent = 'DEFCON 1'
@@ -104,9 +98,8 @@ const UI = (() => {
     dedfconFiveOption.value = 'defconfive'
     questUrgencySelect.appendChild(dedfconFiveOption)
 
-
     const formSubmitBtn = document.createElement('button')
-    formSubmitBtn.id = 'submit'
+    formSubmitBtn.id = 'submit-quest'
     formSubmitBtn.textContent = 'Submit Quest'
     formSubmitBtn.addEventListener('click', (e) => {
         e.preventDefault()
@@ -115,6 +108,7 @@ const UI = (() => {
         const priority = questUrgencySelect.value
         if(name == '' || description == '') {
             alert('Please do not leave name or description blank!')
+            return
         }
         const newQuest = quest(name,description,priority)
         if(questLine.containsQuest(newQuest)) {
@@ -124,22 +118,86 @@ const UI = (() => {
             questLine.addQuest(newQuest)
         }
     })
-    field.appendChild(formSubmitBtn)
+    questField.appendChild(formSubmitBtn)
+    
+     //Objective Box
 
-    //Objective Box
+    // const objectiveBox = document.createElement('div')
+    // objectiveBox.classList.add('objective-box')
+    // questTerminalBox.appendChild(objectiveBox)
+ 
+    // const objectiveBoxHeader = document.createElement('p')
+    // objectiveBoxHeader.textContent = "Objectives"
+    // objectiveBox.appendChild(objectiveBoxHeader)
 
-    const objectiveBox = document.createElement('div')
-    objectiveBox.classList.add('objective-box')
-    questTerminalBox.appendChild(objectiveBox)
+    // const objectivesWrapper = document.createElement('div')
+    // objectivesWrapper.classList.add('objectives-wrapper')
+    // objectiveBox.appendChild(objectivesWrapper)
 
-    const objectiveBoxHeader = document.createElement('p')
-    objectiveBoxHeader.textContent = "Objectives"
-    objectiveBox.appendChild(objectiveBoxHeader)
+    // const addObjectiveBtn = document.createElement('button')
+    // addObjectiveBtn.textContent = '+ Add objective'
+    // objectivesWrapper.appendChild(addObjectiveBtn)
 
+    // const objectiveForm = document.createElement('form')
+    // // objectiveForm.style.display = 'none'
 
+    // const objectiveField = document.createElement('fieldset')
+    // objectiveForm.appendChild(objectiveField)
 
-    objectiveBox.appendChild(questForm)
-    objectiveBox.appendChild(uiObjective())
+    // const objectiveLegend = document.createElement('legend')
+    // objectiveLegend.textContent = 'New Objective'
+    // objectiveField.appendChild(objectiveLegend)
+
+    // const objectiveNameLabel = document.createElement('label')
+    // objectiveNameLabel.textContent = 'Objective title: '
+    // objectiveNameLabel.setAttribute('for','name')
+    // objectiveField.appendChild(objectiveNameLabel)
+
+    // const objectiveName = document.createElement('input')
+    // objectiveName.name = 'name'
+    // objectiveField.appendChild(objectiveName)
+
+    // const objectiveDescriptionLabel = document.createElement('label')
+    // objectiveDescriptionLabel.textContent = 'Objective: '
+    // objectiveDescriptionLabel.setAttribute('for','description')
+    // objectiveField.appendChild(objectiveDescriptionLabel)
+
+    // const objectiveDescription = document.createElement('input')
+    // objectiveDescription.setAttribute('for', 'description')
+    // objectiveField.appendChild(objectiveDescription)
+
+    // const objectiveBtn = document.createElement('button')
+    // objectiveBtn.textContent = 'Add objective'
+
+    const logTerminal = document.createElement('div')
+    logTerminal.classList.add('log-terminal')
+    questTerminalBox.appendChild(logTerminal)
+
+    questTerminalBox.appendChild(uiObjective())
+
+    const objectiveForm = document.querySelector('.objective-form')
+
+    addQuestBtn.addEventListener('click', () => {
+        if(questForm.style.display == 'none') {
+            questForm.style.display = 'block'
+            objectiveForm.style.display = 'none'
+        } else {
+            questForm.style.display = 'none'
+        }
+    })
+
+    const addObjectiveBtn = document.getElementById('add-objective-button')
+    addObjectiveBtn.addEventListener('click', (e) => {
+        if(objectiveForm.style.display == 'none') {
+            objectiveForm.style.display = 'block'
+            questForm.style.display = 'none'
+        } else {
+            objectiveForm.style.display = 'none'
+        }
+    })
+    
+
+    logTerminal.appendChild(questForm)
 
     return questTerminalWrapper
 })()
