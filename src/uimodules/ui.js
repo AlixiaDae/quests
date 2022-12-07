@@ -6,7 +6,9 @@ import uiQuestButtonPage from './uiquestPage'
 const UI = (() => {
     const questLine = queststerminal()
     const startingQuest = quest('Starting Quest', 'Default quest', 'Today')
+    const testQuest = quest('Test quest', 'testing', 'Today')
     questLine.addQuest(startingQuest)
+    questLine.addQuest(testQuest)
 
     //Quest Terminal
     const questTerminalWrapper = document.createElement('div')
@@ -84,6 +86,9 @@ const UI = (() => {
 
     questButtonsWrapper.appendChild(uiQuestButtonPage(questLine.getQuest(startingQuest)))
 
+    questButtonsWrapper.appendChild(uiQuestButtonPage(questLine.getQuest(testQuest)))
+
+    
     return questTerminalWrapper
 })()
 

@@ -134,7 +134,8 @@ option {
     background-color: #304a53;
 }
 
-#submit-quest {
+#submit-quest,
+#submit-objective {
     padding: 5px;
     background-color: rgb(2, 161, 2);
     border: 2px solid #d5edf0;
@@ -153,7 +154,8 @@ select:focus {
     outline: none;
 }
 
-#submit-quest:hover {
+#submit-quest:hover,
+#submit-objective:hover {
     background-color: rgb(3, 134, 3);
     font-weight: bold;
 }
