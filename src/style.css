@@ -98,6 +98,15 @@ body {
     padding: 30px;
 }
 
+.objectives-wrapper > button {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    text-align: left;
+    justify-self: left;
+}
+
 .log-terminal {
     grid-area: 2/2;
     padding: 5px;
@@ -144,7 +153,8 @@ option {
 }
 
 .quest-box > button:hover,
-.quest-button:hover {
+.quest-button:hover,
+.objectives-wrapper > button:hover {
     background-color: #304a53;
 }
 

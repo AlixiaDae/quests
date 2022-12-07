@@ -60,6 +60,8 @@ const UI = (() => {
 
     logTerminal.appendChild(questForm())
 
+    //Button handlers
+
     addQuestBtn.addEventListener('click', showQuestForm)
 
     const questFormSubmitBtn = document.getElementById('submit-quest')
@@ -77,6 +79,7 @@ const UI = (() => {
         if(questLine.containsQuest(newQuest)) return
         questLine.addQuest(newQuest)
         questButtonsWrapper.textContent = ''
+        //creates quest button and appends it to questBox for each quest in the questTerminal constructor
         for(let i = 0; i < questLine.getQuests().length; i++) {
             questButtonsWrapper.appendChild(uiQuestButtonPage(questLine.getQuests()[i]))
         }
@@ -84,13 +87,16 @@ const UI = (() => {
         questDescription.value = ''
     })
 
+
+    //default quest when page initializes
     questButtonsWrapper.appendChild(uiQuestButtonPage(questLine.getQuest(startingQuest)))
 
     questButtonsWrapper.appendChild(uiQuestButtonPage(questLine.getQuest(testQuest)))
-
     
     return questTerminalWrapper
 })()
+
+//Since there's only one questForm, I opted to just include it here and change display when addQuestBtn is clicked
 
 function questForm() {
     const questForm = document.createElement('form')

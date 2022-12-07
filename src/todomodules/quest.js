@@ -1,8 +1,12 @@
+import objective from "./objective"
+
 const quest = (name,description,priority) => {
     let objectives = []
 
     const getObjectives = () => objectives
     const getObjective = (newObjective) => objectives.find(objective => objective.name == newObjective.name)
+
+    const containsObjective = (newObjective) => objectives.some(objective => objective.name === newObjective.name)
 
     const addObjective = (newObjective) => {
         if(objectives.find(objective => objective.name == newObjective.name)) return
@@ -18,6 +22,7 @@ const quest = (name,description,priority) => {
         name,
         getObjectives,
         getObjective,
+        containsObjective,
         addObjective,
         removeObjective
     }

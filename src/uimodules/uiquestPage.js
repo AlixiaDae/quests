@@ -1,4 +1,5 @@
-//for each quest button clicking adds active class and appends objective form. 
+import objective from "../todomodules/objective"
+//domhandler for created quests
 
 const uiQuestButtonPage = (newQuest) => {
     const questButton = document.createElement('button')
@@ -6,21 +7,36 @@ const uiQuestButtonPage = (newQuest) => {
     // questButton.setAttribute('data-quest', newQuest.name)
     questButton.textContent = newQuest.name
 
+    const logTerminal = document.querySelector('.log-terminal')
+
+    const objectivesWrapper= document.querySelector('.objectives-wrapper')
+    const addObjectiveBtn = document.createElement('button')
+    addObjectiveBtn.textContent = '+ Add Objective'
+
     questButton.addEventListener('click', (e) => {
-        if(e.target.classList.contains('active')) return
+        logTerminal.textContent = ''
+        objectivesWrapper.textContent = ''
         setActiveBtn(questButton)
+        objectivesWrapper.appendChild(addObjectiveBtn)
+    })
+
+    addObjectiveBtn.addEventListener('click', () => {
+        logTerminal.textContent = ''
+        logTerminal.appendChild(objectiveForm(questButton))
     })
 
     return questButton
 }
 
-function objectiveForm() {
-    const objectiveForm = document.createElement('form')
-    objectiveForm.classList.add('objective-form')
-    objectiveForm.style.display = 'none'
+//for each quest button clicking adds active class. 
+
+function objectiveForm(quest) {
+    const form = document.createElement('form')
+    form.classList.add('objective-form')
+    // form.style.display = 'none'
 
     const objectiveField = document.createElement('fieldset')
-    objectiveForm.appendChild(objectiveField)
+    form.appendChild(objectiveField)
 
     const objectiveNameLabel = document.createElement('label')
     objectiveNameLabel.setAttribute('for', 'name')
@@ -38,15 +54,20 @@ function objectiveForm() {
     objectiveField.appendChild(objectiveDescriptionLabel)
 
     const objectiveDescription = document.createElement('textarea')
+    objectiveDescription.classList.add('objective-description')
     objectiveDescription.name = 'description'
     objectiveField.appendChild(objectiveDescription)
 
     const objectiveSubmitBtn = document.createElement('button')
     objectiveSubmitBtn.textContent = 'Submit Objective'
+    objectiveSubmitBtn.addEventListener('click', (e) => {
+        e.preventDefault()
+        console.log(quest.textContent)
+    })
     objectiveSubmitBtn.id = 'submit-objective'
     objectiveField.appendChild(objectiveSubmitBtn)
-
-    return objectiveForm
+    
+    return form
 }
 
 function setActiveBtn(button) {
