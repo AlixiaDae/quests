@@ -1,17 +1,14 @@
 import '../style.css'
 import queststerminal from '../todomodules/queststerminal'
 import quest from '../todomodules/quest'
-import uiQuestForm from './uiquestform'
+import uiQuestButtonPage from './uiquestPage'
 
 const UI = (() => {
     //Quest Terminal
     const questLine = queststerminal()
-    const startingQuest = quest('Starting Quest', 'First quest in line', 'defconone')
-
-    questLine.addQuest(startingQuest)
 
     const questTerminalWrapper = document.createElement('div')
-    questTerminalWrapper.classList.add('quest-wrapper')
+    questTerminalWrapper.classList.add('questline-wrapper')
     document.body.appendChild(questTerminalWrapper)
 
     const questTerminalHeader = document.createElement('h2')
@@ -35,6 +32,10 @@ const UI = (() => {
     addQuestBtn.textContent = '+ Add Quest'
     questBox.appendChild(addQuestBtn)
 
+    const questButtonsWrapper = document.createElement('div')
+    questButtonsWrapper.classList.add('quest-buttons-wrapper')
+    questBox.appendChild(questButtonsWrapper)
+
     //Objective Box
 
     const objectiveBox = document.createElement('div')
@@ -55,26 +56,118 @@ const UI = (() => {
     logTerminal.classList.add('log-terminal')
     questTerminalBox.appendChild(logTerminal)
 
-    logTerminal.appendChild(uiQuestForm())
+    logTerminal.appendChild(questForm())
 
-    //for each objective of a quest, append it to the objective box
+    addQuestBtn.addEventListener('click', showQuestForm)
 
-    const questForm = document.querySelector('.quest-form')
-    const questFormSubmitBtn = document.getElementById('submit-quest')
-
-    questFormSubmitBtn.addEventListener('click', (e) => {
-        e.preventDefault()
-    })
-
-    addQuestBtn.addEventListener('click', () => {
+    function showQuestForm() {
+        const questForm = document.querySelector('.quest-form')
         if(questForm.style.display == 'none') {
             questForm.style.display = 'block'
         } else {
             questForm.style.display = 'none'
         }
+    }
+
+    const questFormSubmitBtn = document.getElementById('submit-quest')
+
+    questFormSubmitBtn.addEventListener('click', (e) => {
+        e.preventDefault()
+        const questName = document.querySelector('.quest-name').value
+        const questDescription = document.querySelector('.quest-description').value
+        const questUrgencySelect = document.querySelector('.quest-urgency').value
+        const newQuest = quest(questName, questDescription, questUrgencySelect)
+        if(questName == '') {
+            alert('Please do not leave quest name empty!')
+            return
+        }
+        if(questLine.containsQuest(newQuest)) return
+        questLine.addQuest(newQuest)
+        questButtonsWrapper.textContent = ''
+        for(let i = 0; i < questLine.getQuests().length; i++) {
+            questButtonsWrapper.appendChild(uiQuestButtonPage(questLine.getQuests()[i]))
+        }
     })
+
+    
+
 
     return questTerminalWrapper
 })()
+
+function questForm() {
+    const questForm = document.createElement('form')
+    questForm.classList.add('quest-form')
+    questForm.style.display = 'none'
+    
+    const questField = document.createElement('fieldset')
+    questForm.appendChild(questField)
+
+    const fieldLegend = document.createElement('legend')
+    fieldLegend.textContent = 'New Quest'
+    questField.appendChild(fieldLegend)
+
+    const questNameLabel = document.createElement('label')
+    questNameLabel.textContent = 'Quest Name: '
+    questNameLabel.setAttribute('for', 'name')
+    questField.appendChild(questNameLabel)
+
+    const questName = document.createElement('input')
+    questName.classList.add('quest-name')
+    questName.name = 'name'
+    questField.appendChild(questName)
+
+    const questDescriptionLabel = document.createElement('label')
+    questDescriptionLabel.textContent = 'Quest Description: '
+    questDescriptionLabel.setAttribute('for', 'description')
+    questField.appendChild(questDescriptionLabel)
+
+    const questDescription = document.createElement('textarea')
+    questDescription.classList.add('quest-description')
+    questDescription.name = 'description'
+    questField.appendChild(questDescription)
+
+    const questUrgencyLabel = document.createElement('label')
+    questUrgencyLabel.textContent = 'Urgency: '
+    questUrgencyLabel.setAttribute('for', 'urgency')
+    questField.appendChild(questUrgencyLabel)
+
+    const questUrgencySelect = document.createElement('select')
+    questUrgencySelect.classList.add('quest-urgency')
+    questUrgencySelect.name = 'urgency'
+    questField.appendChild(questUrgencySelect)
+    
+    const defconOneOption = document.createElement('option')
+    defconOneOption.textContent = 'DEFCON 1'
+    defconOneOption.value = 'defconone'
+    questUrgencySelect.appendChild(defconOneOption)
+
+    const defconTwoOption = document.createElement('option')
+    defconTwoOption.textContent = 'DEFCON 2'
+    defconTwoOption.value = 'defcontwo'
+    questUrgencySelect.appendChild(defconTwoOption)
+
+    const defconThreeOption = document.createElement('option')
+    defconThreeOption.textContent = 'DEFCON 3'
+    defconThreeOption.value = 'defconthree'
+    questUrgencySelect.appendChild(defconThreeOption)
+
+    const defconFourOption = document.createElement('option')
+    defconFourOption.textContent = 'DEFCON 4'
+    defconFourOption.value = 'defconfour'
+    questUrgencySelect.appendChild(defconFourOption)
+
+    const dedfconFiveOption = document.createElement('option')
+    dedfconFiveOption.textContent = 'DEFCON 5'
+    dedfconFiveOption.value = 'defconfive'
+    questUrgencySelect.appendChild(dedfconFiveOption)
+
+    const questFormSubmitBtn = document.createElement('button')
+    questFormSubmitBtn.id = 'submit-quest'
+    questFormSubmitBtn.textContent = 'Submit Quest'
+    questField.appendChild(questFormSubmitBtn)
+
+    return questForm
+}
 
 export default UI

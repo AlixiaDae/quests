@@ -10,7 +10,7 @@ body {
     min-height: 100vh;
 }
 
-.quest-wrapper {
+.questline-wrapper {
     height: calc(100vh - 40px);
     display: grid;
     grid-template-rows: 40px 2fr;
@@ -22,7 +22,7 @@ body {
     align-items: center;
 }
 
-.quest-wrapper > :first-child {
+.questline-wrapper > :first-child {
     grid-area: 1;
     margin-bottom: 40px;
     font-size: 30px;
@@ -46,14 +46,6 @@ body {
     text-decoration: underline;
 }
 
-.quest-box > :not(:first-child) {
-    background-color: transparent;
-    font-size: 20px;
-    padding: 15px;
-    border-style: none;
-    box-shadow: 0px 2px #95abad;
-}
-
 .quest-box,
 .objective-box,
 .log-terminal {
@@ -67,7 +59,26 @@ body {
 .quest-box {
     grid-row-start: 1;
     grid-row-end: 3;
-    grid-template-rows: repeat(10,60px);
+    grid-template-rows: repeat(2,60px) 1fr;
+}
+
+.quest-box > button,
+.quest-button {
+    background-color: #3c5c68;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    box-shadow: 0px 2px #95abad;
+}
+
+.quest-buttons-wrapper {
+    grid-area: 3;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(10,50px);
+    grid-auto-flow: row;
+    row-gap: 5px;
 }
 
 .objective-box {
@@ -87,77 +98,52 @@ body {
     padding: 30px;
 }
 
-.objectives-wrapper > button {
-    justify-self: left;
-    align-self: left;
-    background-color: transparent;
-    border-style: none;
-    font-size: 20px;
-    padding: 5px;
-    width: 200px;
-}
-
 .log-terminal {
     grid-area: 2/2;
     padding: 5px;
 }
 
-form > * {
-    letter-spacing: 1px;
-}
-
-fieldset {
+.log-terminal > form > fieldset {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    text-align: center;
     align-items: center;
-    justify-content: center;
+    gap: 5px;
+    border: 1px solid #95abad;
 }
 
 legend {
     font-size: 20px;
+    letter-spacing: 2px;
     font-weight: bold;
-}
-
-label {
-    margin-top: 5px;
-    font-weight: 10px;
-}
-
-input, 
-textarea {
-    width: 400px;
 }
 
 input,
 textarea,
-select {
-    padding: 5px;
-    letter-spacing: 1px;
-    text-align: center;
+select{
+    width: 300px;
+    resize: none;
     background-color: transparent;
     border: 1px solid #95abad;
+    padding: 5px;
+    text-align: center;
+    letter-spacing: 1px;
 }
 
 option {
     background-color: #304a53;
 }
 
-textarea {
-    resize: none;
-}
-
-#submit-quest,
-#submit-objective {
-    background-color: #367549;
+#submit-quest {
     padding: 5px;
-    margin-top: 10px;
+    background-color: rgb(2, 161, 2);
+    border: 2px solid #d5edf0;
     font-size: 15px;
-    border: 2px #95abad solid;
-    width: 300px;
+    letter-spacing: 1px;
 }
 
-.quest-box > button:hover{
+.quest-box > button:hover,
+.quest-button:hover {
     background-color: #304a53;
 }
 
@@ -167,12 +153,7 @@ select:focus {
     outline: none;
 }
 
-#submit-quest:hover,
-#submit-objective:hover {
-    background-color: #2f643f;
+#submit-quest:hover {
+    background-color: rgb(3, 134, 3);
     font-weight: bold;
-}
-
-.objectives-wrapper > button:hover {
-    background-color: #304a53;
 }
