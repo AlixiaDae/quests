@@ -4,9 +4,11 @@ import quest from '../todomodules/quest'
 import uiQuestButtonPage from './uiquestPage'
 
 const UI = (() => {
-    //Quest Terminal
     const questLine = queststerminal()
+    const startingQuest = quest('Starting Quest', 'Default quest', 'Today')
+    questLine.addQuest(startingQuest)
 
+    //Quest Terminal
     const questTerminalWrapper = document.createElement('div')
     questTerminalWrapper.classList.add('questline-wrapper')
     document.body.appendChild(questTerminalWrapper)
@@ -37,7 +39,6 @@ const UI = (() => {
     questBox.appendChild(questButtonsWrapper)
 
     //Objective Box
-
     const objectiveBox = document.createElement('div')
     objectiveBox.classList.add('objective-box')
     questTerminalBox.appendChild(objectiveBox)
@@ -51,7 +52,6 @@ const UI = (() => {
     objectiveBox.appendChild(objectivesWrapper)
 
     //Log Terminal
-    
     const logTerminal = document.createElement('div')
     logTerminal.classList.add('log-terminal')
     questTerminalBox.appendChild(logTerminal)
@@ -60,24 +60,15 @@ const UI = (() => {
 
     addQuestBtn.addEventListener('click', showQuestForm)
 
-    function showQuestForm() {
-        const questForm = document.querySelector('.quest-form')
-        if(questForm.style.display == 'none') {
-            questForm.style.display = 'block'
-        } else {
-            questForm.style.display = 'none'
-        }
-    }
-
     const questFormSubmitBtn = document.getElementById('submit-quest')
 
     questFormSubmitBtn.addEventListener('click', (e) => {
         e.preventDefault()
-        const questName = document.querySelector('.quest-name').value
-        const questDescription = document.querySelector('.quest-description').value
-        const questUrgencySelect = document.querySelector('.quest-urgency').value
-        const newQuest = quest(questName, questDescription, questUrgencySelect)
-        if(questName == '') {
+        let questName = document.querySelector('.quest-name')
+        let questDescription = document.querySelector('.quest-description')
+        let questUrgencySelect = document.querySelector('.quest-urgency')
+        const newQuest = quest(questName.value, questDescription.value, questUrgencySelect.value)
+        if(questName.value == '') {
             alert('Please do not leave quest name empty!')
             return
         }
@@ -87,10 +78,11 @@ const UI = (() => {
         for(let i = 0; i < questLine.getQuests().length; i++) {
             questButtonsWrapper.appendChild(uiQuestButtonPage(questLine.getQuests()[i]))
         }
+        questName.value = ''
+        questDescription.value = ''
     })
 
-    
-
+    questButtonsWrapper.appendChild(uiQuestButtonPage(questLine.getQuest(startingQuest)))
 
     return questTerminalWrapper
 })()
@@ -168,6 +160,15 @@ function questForm() {
     questField.appendChild(questFormSubmitBtn)
 
     return questForm
+}
+
+function showQuestForm() {
+    const questForm = document.querySelector('.quest-form')
+    if(questForm.style.display == 'none') {
+        questForm.style.display = 'block'
+    } else {
+        questForm.style.display = 'none'
+    }
 }
 
 export default UI
