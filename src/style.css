@@ -82,23 +82,34 @@ body {
 }
 
 .objective-box {
-    grid-template-rows: 80px 1fr;
+    grid-template-rows: 80px 80px 1fr;
     grid-template-columns: 1fr;
     justify-content: center;
+    padding: 10px;
 }
 
 .objectives-wrapper {
     height: 100%;
     display: grid;
     grid-template-rows: 70px repeat(5,1fr);
-    grid-template-columns: 1fr;
+    grid-template-columns: 230px;
+    grid-auto-flow: column;
     text-align: center;
-    justify-content: center;
     align-items: center;
     padding: 30px;
+    grid-area: 3;
 }
 
-.objectives-wrapper > button {
+.objective-box > p {
+    grid-area: 1;
+}
+
+.add-objective-button {
+    grid-area: 2;
+}
+
+.objectives-wrapper > button,
+.add-objective-button {
     background-color: transparent;
     border: none;
     padding: 10px;
@@ -154,7 +165,8 @@ option {
 
 .quest-box > button:hover,
 .quest-button:hover,
-.objectives-wrapper > button:hover {
+.objectives-wrapper > button:hover,
+.add-objective-button:hover {
     background-color: #304a53;
 }
 
@@ -169,3 +181,4 @@ select:focus {
     background-color: rgb(3, 134, 3);
     font-weight: bold;
 }
+

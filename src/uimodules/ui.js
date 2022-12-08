@@ -49,9 +49,6 @@ const UI = (() => {
     objectiveBoxHeader.textContent = "Objectives"
     objectiveBox.appendChild(objectiveBoxHeader)
 
-    const objectivesWrapper = document.createElement('div')
-    objectivesWrapper.classList.add('objectives-wrapper')
-    objectiveBox.appendChild(objectivesWrapper)
 
     //Log Terminal
     const logTerminal = document.createElement('div')

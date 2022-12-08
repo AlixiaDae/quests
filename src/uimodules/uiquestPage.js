@@ -1,4 +1,5 @@
 import objective from "../todomodules/objective"
+import uiObjective from "./uiobjective"
 //domhandler for created quests
 
 const uiQuestButtonPage = (newQuest) => {
@@ -9,20 +10,28 @@ const uiQuestButtonPage = (newQuest) => {
 
     const logTerminal = document.querySelector('.log-terminal')
 
-    const objectivesWrapper= document.querySelector('.objectives-wrapper')
+    const objectiveBox= document.querySelector('.objective-box')
+    const objectiveBoxHeader = document.querySelector('.objective-box > p')
+
+    const objectivesWrapper = document.createElement('div')
+    objectivesWrapper.classList.add('objectives-wrapper')
+
     const addObjectiveBtn = document.createElement('button')
+    addObjectiveBtn.classList.add('add-objective-button')
     addObjectiveBtn.textContent = '+ Add Objective'
 
     questButton.addEventListener('click', (e) => {
         logTerminal.textContent = ''
-        objectivesWrapper.textContent = ''
+        objectiveBox.textContent = ''
         setActiveBtn(questButton)
-        objectivesWrapper.appendChild(addObjectiveBtn)
+        objectiveBox.appendChild(objectiveBoxHeader)
+        objectiveBox.appendChild(addObjectiveBtn)
+        objectiveBox.appendChild(objectivesWrapper)
     })
 
     addObjectiveBtn.addEventListener('click', () => {
         logTerminal.textContent = ''
-        logTerminal.appendChild(objectiveForm(questButton))
+        logTerminal.appendChild(objectiveForm(newQuest))
     })
 
     return questButton
@@ -62,8 +71,21 @@ function objectiveForm(quest) {
     objectiveSubmitBtn.textContent = 'Submit Objective'
     objectiveSubmitBtn.addEventListener('click', (e) => {
         e.preventDefault()
-        console.log(quest.textContent)
-    })
+        const objectivesWrapper = document.querySelector('.objectives-wrapper')
+        let name = objectiveName
+        let description = objectiveDescription
+        const newObjective = objective(name.value, description.value)
+        if(name.value == '') {
+            alert('Please do not leave objective name empty!')
+            return
+        }
+        if(quest.containsObjective(newObjective)) return
+        quest.addObjective(newObjective)
+        objectivesWrapper.textContent = ''
+        for(let i = 0; i < quest.getObjectives().length; i++) {
+            objectivesWrapper.appendChild(uiObjective(quest.getObjectives()[i]))
+        }
+     })
     objectiveSubmitBtn.id = 'submit-objective'
     objectiveField.appendChild(objectiveSubmitBtn)
     
