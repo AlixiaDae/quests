@@ -108,7 +108,7 @@ body {
     grid-area: 2;
 }
 
-.objectives-wrapper > button,
+.objectives-wrapper > p,
 .add-objective-button {
     background-color: transparent;
     border: none;
@@ -116,6 +116,18 @@ body {
     font-size: 20px;
     text-align: left;
     justify-self: left;
+}
+
+.objectives-wrapper > p {
+    cursor: default;
+    margin: 0;
+}
+
+.objectives-wrapper > p > button {
+    background-color: red;
+    margin-left: 5px;
+    padding: 2px;
+    text-align: center;
 }
 
 .log-terminal {
@@ -165,7 +177,6 @@ option {
 
 .quest-box > button:hover,
 .quest-button:hover,
-.objectives-wrapper > button:hover,
 .add-objective-button:hover {
     background-color: #304a53;
 }
@@ -180,5 +191,9 @@ select:focus {
 #submit-objective:hover {
     background-color: rgb(3, 134, 3);
     font-weight: bold;
+}
+
+.objectives-wrapper > p > button:hover {
+    background-color: rgb(199, 5, 5);
 }
 

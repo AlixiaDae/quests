@@ -83,7 +83,7 @@ function objectiveForm(quest) {
         quest.addObjective(newObjective)
         objectivesWrapper.textContent = ''
         for(let i = 0; i < quest.getObjectives().length; i++) {
-            objectivesWrapper.appendChild(uiObjective(quest.getObjectives()[i]))
+            objectivesWrapper.appendChild(uiObjective(quest.getObjectives()[i], quest))
         }
      })
     objectiveSubmitBtn.id = 'submit-objective'
