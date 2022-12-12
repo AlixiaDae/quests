@@ -125,9 +125,12 @@ body {
 
 .objectives-wrapper > p > button {
     background-color: red;
-    margin-left: 5px;
-    padding: 2px;
+    margin-left: 15px;
+    height: 25px;
+    width: 25px;
     text-align: center;
+    border: none;
+    font-weight: bold;
 }
 
 .log-terminal {

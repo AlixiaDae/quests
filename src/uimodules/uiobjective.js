@@ -3,7 +3,7 @@ const uiObjective = (newObjective,quest) => {
     objective.textContent = newObjective.name
 
     const objectiveDelete = document.createElement('button')
-    objectiveDelete.textContent = 'x'
+    objectiveDelete.textContent = 'X'
     objective.appendChild(objectiveDelete)
 
     objectiveDelete.addEventListener('click', () => {
