@@ -20,8 +20,9 @@ const uiQuestButtonPage = (newQuest) => {
     addObjectiveBtn.classList.add('add-objective-button')
     addObjectiveBtn.textContent = '+ Add Objective'
 
+    const questForm = document.querySelector('.quest-form')
+
     questButton.addEventListener('click', (e) => {
-        logTerminal.textContent = ''
         objectiveBox.textContent = ''
         setActiveBtn(questButton)
         objectiveBox.appendChild(objectiveBoxHeader)
@@ -31,6 +32,8 @@ const uiQuestButtonPage = (newQuest) => {
 
     addObjectiveBtn.addEventListener('click', () => {
         logTerminal.textContent = ''
+        logTerminal.appendChild(questForm)
+        questForm.style.display = 'none'
         logTerminal.appendChild(objectiveForm(newQuest))
     })
 
@@ -96,8 +99,11 @@ function objectiveForm(quest) {
 
 function setActiveBtn(button) {
     const questButtons = document.querySelectorAll('.quest-button')
+    const addQuestBtn = document.querySelector('.quest-box > button')
+
 
     questButtons.forEach(button => {
+        if(button == addQuestBtn) return
         if(button !== this) {
             button.classList.remove('active')
         }
