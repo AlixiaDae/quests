@@ -14,7 +14,7 @@ const UI = (() => {
     const questTerminalWrapper = document.createElement('div')
     questTerminalWrapper.classList.add('questline-wrapper')
     document.body.appendChild(questTerminalWrapper)
-
+    
     const questTerminalHeader = document.createElement('h2')
     questTerminalHeader.textContent = 'Quest Terminal'
     questTerminalWrapper.appendChild(questTerminalHeader)
