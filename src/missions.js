@@ -1,21 +1,22 @@
 import { Objectives } from "./objectives"
 
-export class Missions {
-    constructor() {
-        this.missions = []
+export class Mission {
+    constructor(name) {
+        this.name = name
+        this.missionsLog = []
     }
 
-    getMissions() {
-        return this.missions
+    getObjectives() {
+        return this.missionsLog
     }
 
     addObjectives(newObj) {
-        if(this.missions.find(obj => obj.name === newObj.name)) return
-        this.missions.push(newObj)
+        if(this.missionsLog.find(obj => obj.name === newObj.name)) return
+        this.missionsLog.push(newObj)
     }
     
     removeObjective(objName) {
-        this.missions = this.missions.filter(obj => obj.name !== objName)
+        this.missionsLog = this.missionsLog.filter(obj => obj.name !== objName)
     }
 
 }

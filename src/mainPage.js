@@ -1,3 +1,5 @@
+import { Mission } from './missions'
+import { QuestJournal } from './questjournal'
 import './style.css'
 
 const mainPage = (() => {
@@ -23,6 +25,28 @@ const mainPage = (() => {
     const missionsHeader = document.createElement("h2")
     missionsHeader.textContent = "Missions"
     missionsBar.appendChild(missionsHeader)
+
+    const missionsBox = document.createElement("div")
+    missionsBox.classList.add("missions-box")
+    missionsBar.appendChild(missionsBox)
+
+    let quest = new QuestJournal()
+    
+    function showMissions() {
+        for(let i = 0; i < quest.getJournal().length; i++) {
+            let name = quest.getJournal()[i].name
+            createMissionCard(missionsBox, name)
+        }
+    }
+
+    function createMissionCard(container, name) {
+        const missionName = document.createElement("div")
+        missionName.textContent = name
+        container.appendChild(missionName)
+    }
+
+    showMissions()
+
 
     // Objectives Bar
 

@@ -1,5 +1,6 @@
 import mainPage from "./mainPage";
-import { Objectives } from "./objectives";
-import { Missions } from "./missions";
+import { Objective } from "./objectives";
+import { Mission } from "./missions";
+import { QuestJournal } from "./questjournal";
 
 mainPage
