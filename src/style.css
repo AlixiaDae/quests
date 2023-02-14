@@ -51,7 +51,8 @@ h1 {
     row-gap: 10px;
 }
 
-.missions-box {
+.missions-box,
+.objectives-box {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, 40px);
@@ -60,6 +61,10 @@ h1 {
     align-items: center;
     font-family: 'Robotic';
     font-size: 20px;
+}
+
+.missions-box > div {
+    cursor: pointer;
 }
 
 h2 {

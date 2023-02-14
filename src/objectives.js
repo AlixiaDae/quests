@@ -7,5 +7,4 @@ export class Objective {
         this.dueDate = dueDate
     }
 
-
 }

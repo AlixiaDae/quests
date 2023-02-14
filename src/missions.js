@@ -1,4 +1,4 @@
-import { Objectives } from "./objectives"
+import { Objective } from "./objectives"
 
 export class Mission {
     constructor(name) {
@@ -11,7 +11,7 @@ export class Mission {
     }
 
     addObjectives(newObj) {
-        if(this.missionsLog.find(obj => obj.name === newObj.name)) return
+        if(this.getObjectives().find(obj => obj.name === newObj)) return
         this.missionsLog.push(newObj)
     }
     

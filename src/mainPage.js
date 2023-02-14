@@ -1,6 +1,7 @@
 import { Mission } from './missions'
 import { QuestJournal } from './questjournal'
 import './style.css'
+import domObjectives from './domObjectives'
 
 const mainPage = (() => {
     const header = document.createElement("div")
@@ -31,8 +32,17 @@ const mainPage = (() => {
     missionsBar.appendChild(missionsBox)
 
     let quest = new QuestJournal()
+    quest.addMission('Another One')
+    let currentMission = quest.getMission("Current Mission")
+    currentMission.addObjectives("this")
+    currentMission.addObjectives("that")
+    let anotherMission = quest.getMission("Another One")
+    anotherMission.addObjectives("first")
+    anotherMission.addObjectives("second")
+    console.log(quest.getJournal())
     
     function showMissions() {
+        missionsBox.textContent = ''
         for(let i = 0; i < quest.getJournal().length; i++) {
             let name = quest.getJournal()[i].name
             createMissionCard(missionsBox, name)
@@ -41,6 +51,7 @@ const mainPage = (() => {
 
     function createMissionCard(container, name) {
         const missionName = document.createElement("div")
+        missionName.classList.add("mission-name")
         missionName.textContent = name
         container.appendChild(missionName)
     }
@@ -57,6 +68,12 @@ const mainPage = (() => {
     const objectivesHeader = document.createElement("h2")
     objectivesHeader.textContent = "Objectives"
     objectivesBar.appendChild(objectivesHeader)
+
+    const objectivesBox = document.createElement("div")
+    objectivesBox.classList.add("objectives-box")
+    objectivesBar.appendChild(objectivesBox)
+
+    domObjectives(quest, objectivesBox)
 
 })()
 
