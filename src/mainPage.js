@@ -52,6 +52,7 @@ const mainPage = (() => {
     function createMissionCard(container, name) {
         const missionName = document.createElement("div")
         missionName.classList.add("mission-name")
+        missionName.id = name
         missionName.textContent = name
         container.appendChild(missionName)
     }
@@ -74,6 +75,25 @@ const mainPage = (() => {
     objectivesBar.appendChild(objectivesBox)
 
     domObjectives(quest, objectivesBox)
+
+    // Mission button function
+
+    const missionButtons = document.querySelectorAll(".mission-name")
+    
+    function setMissionColor(button) {
+        missionButtons.forEach(button => {
+            if(button !== this) {
+                button.classList.remove("focus")
+            }
+        })
+        button.classList.add("focus")
+    }
+
+    missionButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            setMissionColor(e.target)
+        })
+    })
 
 })()
 

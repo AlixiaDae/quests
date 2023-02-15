@@ -9,8 +9,9 @@ function domObjectives(quest, objectivesContainer) {
             objectivesContainer.innerHTML = ''
             let missionObjectives = quest.getMission(e.target.textContent).getObjectives()
             for(let i = 0; i < missionObjectives.length; i++) {
-                const obj = document.createElement("div")
+                const obj = document.createElement("button")
                 obj.textContent = missionObjectives[i]
+                obj.classList.add("objective-name")
                 objectivesContainer.appendChild(obj)
             }
         }))
