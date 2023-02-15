@@ -1,5 +1,5 @@
-import { Mission } from './missions'
-import { QuestJournal } from './questjournal'
+import { Mission } from '../questModules/missions'
+import { QuestJournal } from '../questModules/questjournal'
 import './style.css'
 import domObjectives from './domObjectives'
 
@@ -39,7 +39,6 @@ const mainPage = (() => {
     let anotherMission = quest.getMission("Another One")
     anotherMission.addObjectives("first")
     anotherMission.addObjectives("second")
-    console.log(quest.getJournal())
     
     function showMissions() {
         missionsBox.textContent = ''

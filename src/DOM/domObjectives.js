@@ -1,5 +1,5 @@
-import { QuestJournal } from "./questjournal"
-import { Mission } from "./missions"
+import { QuestJournal } from "../questModules/questjournal"
+import { Mission } from "../questModules/missions"
 
 function domObjectives(quest, objectivesContainer) {
     let missions = document.querySelectorAll(".mission-name")
