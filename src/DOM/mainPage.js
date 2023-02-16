@@ -11,7 +11,7 @@ const mainPage = (() => {
     name.textContent = "Your Quests"
     header.appendChild(name)
 
-    // Content Box
+    // Content Box for missions and objectives
 
     const contentBox = document.createElement("div")
     contentBox.classList.add("content-box")
@@ -30,6 +30,23 @@ const mainPage = (() => {
     const missionsBox = document.createElement("div")
     missionsBox.classList.add("missions-box")
     missionsBar.appendChild(missionsBox)
+    
+    //Add mission button and form
+    const addMissionsBtn = document.createElement("button")
+    addMissionsBtn.textContent = "Add Mission"
+    addMissionsBtn.id = "add-mission-button"
+    missionsBar.appendChild(addMissionsBtn)
+
+    const addMissionForm = document.createElement("form")
+
+    const aMFieldSet = document.createElement("fieldset")
+    addMissionForm.appendChild(aMFieldSet)
+
+    const aMLegend = document.createElement("legend") 
+    aMLegend.textContent = "New Mission"
+    aMFieldSet.appendChild(aMLegend)
+
+    //Quest and placeholders
 
     let quest = new QuestJournal()
     quest.addMission('Another One')
@@ -39,7 +56,53 @@ const mainPage = (() => {
     let anotherMission = quest.getMission("Another One")
     anotherMission.addObjectives("first")
     anotherMission.addObjectives("second")
-    
+
+    // Objectives Bar
+
+    const objectivesBar = document.createElement("div")
+    objectivesBar.classList.add("objectives-bar")
+    contentBox.appendChild(objectivesBar)
+
+    const objectivesHeader = document.createElement("h2")
+    objectivesHeader.textContent = "Objectives"
+    objectivesBar.appendChild(objectivesHeader)
+
+    const objectivesBox = document.createElement("div")
+    objectivesBox.classList.add("objectives-box")
+    objectivesBar.appendChild(objectivesBox)
+
+    // Functions
+
+    function setMissionsBoxDisplay() {
+        if(missionsBox.classList.contains("missions-box")) {
+            missionsBox.classList.remove("missions-box")
+            missionsBox.classList.add("missions-box-flex")
+        } else {
+            missionsBox.classList.remove("missions-box-flex")
+            missionsBox.classList.add("missions-box")
+        }
+    }
+
+    function showMissionForm() {
+        missionsBox.appendChild(addMissionForm)
+    }
+
+    function removeMissionForm() {
+        addMissionForm.remove()
+    }
+
+    addMissionsBtn.addEventListener("click", () => {
+        if(missionsBox.contains(addMissionForm)) {
+            setMissionsBoxDisplay()
+            removeMissionForm()
+            showMissions()
+        } else {
+            missionsBox.textContent = ''
+            setMissionsBoxDisplay()
+            showMissionForm()
+        }
+    })
+
     function showMissions() {
         missionsBox.textContent = ''
         for(let i = 0; i < quest.getJournal().length; i++) {
@@ -58,25 +121,6 @@ const mainPage = (() => {
 
     showMissions()
 
-
-    // Objectives Bar
-
-    const objectivesBar = document.createElement("div")
-    objectivesBar.classList.add("objectives-bar")
-    contentBox.appendChild(objectivesBar)
-
-    const objectivesHeader = document.createElement("h2")
-    objectivesHeader.textContent = "Objectives"
-    objectivesBar.appendChild(objectivesHeader)
-
-    const objectivesBox = document.createElement("div")
-    objectivesBox.classList.add("objectives-box")
-    objectivesBar.appendChild(objectivesBox)
-
-    domObjectives(quest, objectivesBox)
-
-    // Mission button function
-
     const missionButtons = document.querySelectorAll(".mission-name")
     
     function setMissionColor(button) {
@@ -93,6 +137,8 @@ const mainPage = (() => {
             setMissionColor(e.target)
         })
     })
+
+    domObjectives(quest, objectivesBox)
 
 })()
 

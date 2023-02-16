@@ -3,13 +3,18 @@
     src: url('../zero\ hour.otf');
 }
 
+:root {
+    --base-color: #32527b;
+    --first-accent: #1f3b54;
+}
+
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0 auto;
-    background-color: 	#aaaaaa;
+    background-color: #aaaaaa;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -67,6 +72,12 @@ h1 {
     font-family: 'Robotic';
 }
 
+.missions-box-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .missions-box > div {
     cursor: pointer;
 }
@@ -78,13 +89,36 @@ h1 {
     align-items: center;
 }
 
+#add-mission-button {
+    background-color: var(--base-color);
+    color: whitesmoke;
+    border: none;
+    font-size: 20px;
+    font-family: 'Robotic';
+    padding: 7px;
+    width: 200px;
+    border-radius: 10px;
+    margin: 10px;
+    justify-self: center;
+}
+
+form {
+    height: 90px;
+    text-align: center;
+}
+
+legend {
+    font-family: 'Robotic';
+    font-size: 22px;
+}
+
 .focus {
-    background-color: rgb(31, 59, 84);
+    background-color: var(--first-accent);
     color: whitesmoke;
 }
 
 h2 {
-    background-color: #32527b;
+    background-color: var(--base-color);
     color: whitesmoke;
     padding: 10px;
     width: 100%;
@@ -118,4 +152,10 @@ h2 {
 
 .objective-name:hover {
     text-decoration: underline;
+}
+
+#add-mission-button:hover {
+    background-color: var(--first-accent);
+    text-decoration: underline;
+    font-size: 21px;
 }

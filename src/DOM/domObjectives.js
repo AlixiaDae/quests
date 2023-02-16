@@ -15,9 +15,6 @@ function domObjectives(quest, objectivesContainer) {
                 objectivesContainer.appendChild(obj)
             }
         }))
-
-    
-
 }
 
 
